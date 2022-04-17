@@ -19,3 +19,39 @@ docker swarm join-token worker
 
 7. How to run the container
 docker container run <image>
+
+8. What is the autolock feature in the Docker swarm?
+When Docker restarts, both the TLS key used to encrypt communication among swarm nodes, and the key used to encrypt and decrypt Raft logs on disk, are loaded into each manager node’s memory.
+Docker 1.13 introduces the ability to protect the mutual TLS encryption key and the key used to encrypt and decrypt Raft logs at rest, by allowing you to take ownership of these keys and to require manual unlocking of your managers. This feature is called autolock.
+
+9. How to lock the swarm?
+docker swarm init --autolock
+
+10. How to unlock the swarm?
+docker swarm unlock
+
+11. Are we able to enable autolock feature only when we create a swarm for the first time?
+No. You can lock the existing swarm as well
+
+12. How to enable or disable autolock on the existing swarm?
+//enable autolock
+docker swarm update --autolock=true
+
+//disable autolock
+docker swarm update --autolock=false
+
+13. How to view the current unlock key for the running swarm?
+docker swarm unlock-key
+
+14. How to rotate the unlock key?
+docker swarm unlock-key --rotate
+
+15. If the key was rotated after one of the manager nodes became unavailable and 
+if you don’t have access to the previous key you may need to force the manager to leave the swarm and 
+join it back as a new manager. Is this statement correct?
+Yes
+
+16. How to deploy a service in the docker swarm?
+docker service create --replicas 3 --name nginx-web nginx
+
+17. How to list the services in the Docker swarm? 
