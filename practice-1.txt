@@ -1,0 +1,21 @@
+1. Which command do you use to create a new swarm?
+docker swarm init --advertise-addr <MANAGER-IP>
+
+2. What is this flag --advertise-addr for?
+This flag configures the IP address for the manager node and the other nodes in the swarm must be able to access the manager at the IP address.
+ 
+3. How do you know the current status of the swarm?
+docker info // you can find the info under the swarm action
+
+4. Which command do you use to find the information about the nodes in the swarm?
+docker node ls
+
+5. How to add another manager to the swarm?
+// it generate the instruction for the manager to be added
+docker swarm join-token manager
+
+6. How to add another worker node to the swarm?
+docker swarm join-token worker
+
+7. How to run the container
+docker container run <image>
